@@ -1,0 +1,49 @@
+{
+  "body": {
+    "type": "object",
+    "properties": {
+      "expand": {
+        "type": "string"
+      },
+      "id": {
+      "type": "string"
+      },
+      "self": {
+      "type": "string"
+      },
+      "key": {
+      "type": "string"
+      },
+      "fields": {
+        "type": "object"
+      }
+    }
+  },
+  "status_code": 200,
+  "headers": {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Date": "Mon, 30 Jun 2025 03:09:06 GMT",
+    "Server": "",
+    "Timing-Allow-Origin": "",
+    "X-Arequestid": "",
+    "Set-Cookie": "",
+    "X-Aaccountid": "",
+    "Cache-Control": "",
+    "Vary": "",
+    "Content-Encoding": "",
+    "X-Content-Type-Options": "",
+    "X-Xss-Protection": "",
+    "Atl-Traceid": "",
+    "Atl-Request-Id": "",
+    "Strict-Transport-Security": "",
+    "Report-To": "",
+    "Nel": "",
+    "X-Cache": "",
+    "Via": "",
+    "X-Amz-Cf-Pop": "",
+    "X-Amz-Cf-Id": "",
+    "Server-Timing": ""
+  }
+}

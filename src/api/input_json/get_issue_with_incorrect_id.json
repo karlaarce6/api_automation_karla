@@ -1,0 +1,38 @@
+{
+  "body": {
+    "type": "object",
+      "properties": {
+        "errorMessages": {
+          "type": "array"
+        },
+        "errors": {
+          "type": "object"
+        }
+    }
+  },
+  "status_code": 404,
+  "headers": {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Connection": "keep-alive",
+    "Date": "Sun, 29 Jun 2025 23:24:05 GMT",
+    "Server": "",
+    "Timing-Allow-Origin": "",
+    "X-Arequestid": "",
+    "Set-Cookie": "",
+    "X-Aaccountid": "",
+    "Cache-Control": "",
+    "Vary": "",
+    "X-Content-Type-Options": "",
+    "X-Xss-Protection": "",
+    "Atl-Traceid": "",
+    "Atl-Request-Id": "",
+    "Strict-Transport-Security": "",
+    "Report-To": "",
+    "Nel": "",
+    "X-Cache": "",
+    "Via": "",
+    "X-Amz-Cf-Pop": "",
+    "X-Amz-Cf-Id": "",
+    "Server-Timing": ""
+  }
+}

@@ -2,3 +2,8 @@ pre-commit==4.2.0
 pytest==8.4.0
 python-dotenv==1.1.0
 requests==2.32.4
+jsonschema==4.24.0
+faker==37.4.0
+pytest_html==4.1.1
+pymsteams==0.2.5
+pytest_md_report==0.7.0
