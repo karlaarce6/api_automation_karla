@@ -17,3 +17,4 @@ get_headers = {
 params = {"returnIssue": True}
 web_hook = os.getenv("WEB_HOOK")
 account_id = os.getenv("ACCOUNT_ID")
+influxdb_token = os.getenv("INFLUXDB_TOKEN")

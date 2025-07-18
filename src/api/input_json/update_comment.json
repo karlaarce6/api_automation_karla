@@ -1,0 +1,172 @@
+{
+  "body": {
+    "type": "object",
+    "properties": {
+      "self": {
+        "type": "string"
+      },
+      "id": {
+        "type": "string"
+      },
+      "author": {
+        "type": "object",
+        "properties": {
+          "self": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "avatarUrls": {
+            "type": "object",
+            "properties": {
+              "48x48": {
+                "type": "string"
+              },
+              "24x24": {
+                "type": "string"
+              },
+              "16x16": {
+                "type": "string"
+              },
+              "32x32": {
+                "type": "string"
+              }
+            }
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "accountType": {
+            "type": "string"
+          }
+        }
+      },
+      "body": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "version": {
+            "type": "number"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "updateAuthor": {
+        "type": "object",
+        "properties": {
+          "self": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "avatarUrls": {
+            "type": "object",
+            "properties": {
+              "48x48": {
+                "type": "string"
+              },
+              "24x24": {
+                "type": "string"
+              },
+              "16x16": {
+                "type": "string"
+              },
+              "32x32": {
+                "type": "string"
+              }
+            }
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "accountType": {
+            "type": "string"
+          }
+        }
+      },
+      "created": {
+        "type": "string"
+      },
+      "updated": {
+        "type": "string"
+      },
+      "jsdPublic": {
+        "type": "boolean"
+      }
+    }
+  },
+  "status_code": 200,
+  "headers": {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Date": "Mon, 30 Jun 2025 03:09:06 GMT",
+    "Server": "",
+    "Timing-Allow-Origin": "",
+    "X-Arequestid": "",
+    "Set-Cookie": "",
+    "X-Aaccountid": "",
+    "Cache-Control": "",
+    "Location": "",
+    "Vary": "",
+    "Content-Encoding": "",
+    "X-Content-Type-Options": "",
+    "X-Xss-Protection": "",
+    "Atl-Traceid": "",
+    "Atl-Request-Id": "",
+    "Strict-Transport-Security": "",
+    "Report-To": "",
+    "Nel": "",
+    "X-Cache": "",
+    "Via": "",
+    "X-Amz-Cf-Pop": "",
+    "X-Amz-Cf-Id": "",
+    "Server-Timing": ""
+  }
+}

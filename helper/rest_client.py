@@ -25,7 +25,8 @@ class RestClient:
             )
             response_updated["status_code"] = response.status_code
             response_updated["headers"] = dict(response.headers)
-            LOGGER.debug(response_updated)
+            response_updated["time"] = response.elapsed.total_seconds()
+            response_updated["request"] = response.request
 
         except requests.exceptions.HTTPError as e:
             LOGGER.error("HTTP Error: %s", e)
@@ -34,6 +35,8 @@ class RestClient:
             )
             response_updated["status_code"] = response.status_code
             response_updated["headers"] = dict(response.headers)
+            response_updated["time"] = response.elapsed.total_seconds()
+            response_updated["request"] = response.request
 
         except requests.exceptions.ConnectionError as e:
             LOGGER.error("Connection Error: %s", e)

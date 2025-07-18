@@ -2,11 +2,13 @@ import json
 import logging
 import pytest
 import requests
-from faker import Faker
 
+from faker import Faker
 from config.config import url_base, headers, auth, get_headers, params
 from helper.rest_client import RestClient
 from helper.validate_response import ValidateResponse
+from src.api.conftest import create_project
+from utils.influxdb_connection import InfluxDBConnection
 from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
@@ -22,37 +24,44 @@ class TestIssues:
         cls.rest_client = RestClient()
         cls.validate = ValidateResponse()
         cls.faker = Faker()
+        cls.influxdb_client = InfluxDBConnection()
+
+    def setup_method(self):
+        self.response = None
+
+    def teardown_method(self):
+        self.influxdb_client.store_data_influxdb(self.response, "issues")
 
     @pytest.mark.acceptance
     def test_create_issue(self, test_log_name):
         """
-        Test for issue creation
+        Test for issue creation with a project id
         :param test_log_name: (str) log test name
         """
         # body to create an issue
         issue_body = {
             "fields": {
                 "issuetype": {
-                    "id": "10001"
+                    "id": "10034"
                 },
                 "project": {
-                    "id": "10000"
+                    "id": "10033"
                 },
-                "summary": f"Epic {self.faker.company()}"
+                "summary": f"Task {self.faker.company()}"
             },
             "update": {}
         }
-        # call endpoint using requests
-        response = self.rest_client.send_request(
+        # call endpoint using rest client
+        self.response = self.rest_client.send_request(
             "POST",
             url=f"{url_base}issue",
             body=issue_body,
             headers=headers,
             auth=auth
         )
-        self.issue_list.append(response["body"]["id"])
+        self.issue_list.append(self.response["body"]["id"])
         # Assertion
-        self.validate.validate_response(response, "create_issue")
+        self.validate.validate_response(self.response, "create_issue")
 
     @pytest.mark.acceptance
     def test_get_issue(self, create_issue, test_log_name):
@@ -61,16 +70,16 @@ class TestIssues:
         :param create_issue: (str) id of an issue
         :param test_log_name: (str) log test name
         """
-        # call GET endpoint using requests
-        response = self.rest_client.send_request(
+        # call GET endpoint using rest client
+        self.response = self.rest_client.send_request(
             "GET",
             url=f"{url_base}issue/{create_issue}",
             headers=get_headers,
             auth=auth
         )
-        LOGGER.debug("Response: %s", json.dumps(response["body"], indent=4))
+        LOGGER.debug("Response: %s", json.dumps(self.response["body"], indent=4))
         # Assertion
-        self.validate.validate_response(response, "get_issue")
+        self.validate.validate_response(self.response, "get_issue")
 
     @pytest.mark.acceptance
     def test_update_issue(self, create_issue, test_log_name):
@@ -82,12 +91,12 @@ class TestIssues:
         # body to update issue
         update_issue_body = {
             "fields": {
-                "summary": "Updated Epic issue"
+                "summary": "Updated Task issue"
             },
             "update": {}
         }
-        # call PUT endpoint using requests
-        response = self.rest_client.send_request(
+        # call PUT endpoint using rest client
+        self.response = self.rest_client.send_request(
             "PUT",
             url=f"{url_base}issue/{create_issue}",
             body=update_issue_body,
@@ -96,7 +105,7 @@ class TestIssues:
             params=params
         )
         # Assertion
-        self.validate.validate_response(response, "update_issue")
+        self.validate.validate_response(self.response, "update_issue")
 
     @pytest.mark.acceptance
     def test_delete_issue(self, create_issue, test_log_name):
@@ -105,14 +114,14 @@ class TestIssues:
         :param create_issue: (str) id of an issue
         :param test_log_name: (str) log test name
         """
-        # call DELETE endpoint using requests
-        response = self.rest_client.send_request(
+        # call DELETE endpoint using rest client
+        self.response = self.rest_client.send_request(
             "DELETE",
             url=f"{url_base}issue/{create_issue}",
             auth=auth
         )
         # Assertion
-        self.validate.validate_response(response, "delete_issue")
+        self.validate.validate_response(self.response, "delete_issue")
 
     @pytest.mark.functional
     def test_create_issue_without_body(self, test_log_name):
@@ -120,15 +129,15 @@ class TestIssues:
         Test for create issue without body
         :param test_log_name: (str) log test name
         """
-        response = self.rest_client.send_request(
+        self.response = self.rest_client.send_request(
             "POST",
             url=f"{url_base}issue",
             headers=headers,
             auth=auth
         )
-        LOGGER.debug("Response: %s", json.dumps(response["body"], indent=4))
+        LOGGER.debug("Response: %s", json.dumps(self.response["body"], indent=4))
         # Assertion
-        self.validate.validate_response(response, "create_issue_without_body")
+        self.validate.validate_response(self.response, "create_issue_without_body")
 
     @pytest.mark.functional
     @pytest.mark.parametrize("issue_summary_test", ["123456789", "∀∁∂∃∄∅∆∇∈∉", "<script>alert('test');</script>"])
@@ -141,26 +150,26 @@ class TestIssues:
         issue_body = {
             "fields": {
                 "issuetype": {
-                    "id": "10001"
+                    "id": "10034"
                 },
                 "project": {
-                    "id": "10000"
+                    "id": f"10033"
                 },
                 "summary": f"{issue_summary_test}"
             },
             "update": {}
         }
-        # call endpoint using requests
-        response = self.rest_client.send_request(
+        # call endpoint using rest client
+        self.response = self.rest_client.send_request(
             "POST",
             url=f"{url_base}issue",
             body=issue_body,
             headers=headers,
             auth=auth
         )
-        self.issue_list.append(response["body"]["id"])
+        self.issue_list.append(self.response["body"]["id"])
         # Assertion
-        self.validate.validate_response(response, "create_issue")
+        self.validate.validate_response(self.response, "create_issue")
 
     @pytest.mark.functional
     def test_get_issue_with_incorrect_issue_id(self, test_log_name):
@@ -169,14 +178,14 @@ class TestIssues:
         :param test_log_name: (str) log test name
         """
         # call GET endpoint using requests
-        response = self.rest_client.send_request(
+        self.response = self.rest_client.send_request(
             "GET",
             url=f"{url_base}issue/00000",
             headers=get_headers,
             auth=auth
         )
         # Assertion
-        self.validate.validate_response(response, "get_issue_with_incorrect_id")
+        self.validate.validate_response(self.response, "get_issue_with_incorrect_id")
 
     @pytest.mark.functional
     def test_create_issue_without_auth(self, test_log_name):
@@ -188,23 +197,23 @@ class TestIssues:
         issue_body = {
             "fields": {
                 "issuetype": {
-                    "id": "10001"
+                    "id": "10034"
                 },
                 "project": {
-                    "id": "10000"
+                    "id": f"10033"
                 },
-                "summary": f"Epic {self.faker.company()}"
+                "summary": f"Task {self.faker.company()}"
             },
             "update": {}
         }
-        response = self.rest_client.send_request(
+        self.response = self.rest_client.send_request(
             "POST",
             url=f"{url_base}issue",
             body=issue_body,
             headers=headers
         )
         # Assertion
-        self.validate.validate_response(response, "create_issue_without_auth")
+        self.validate.validate_response(self.response, "create_issue_without_auth")
 
     @pytest.mark.functional
     def test_create_issue_with_project_id(self, test_log_name, create_project):
@@ -225,8 +234,8 @@ class TestIssues:
             },
             "update": {}
         }
-        # call endpoint using requests
-        response = self.rest_client.send_request(
+        # call endpoint using rest client
+        self.response = self.rest_client.send_request(
             "POST",
             url=f"{url_base}issue",
             body=issue_body,
@@ -235,7 +244,7 @@ class TestIssues:
         )
         # self.issue_list.append(response["body"]["id"])
         # Assertion
-        self.validate.validate_response(response, "create_issue")
+        self.validate.validate_response(self.response, "create_issue")
 
     @classmethod
     def teardown_class(cls):

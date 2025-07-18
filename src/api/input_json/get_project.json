@@ -1,0 +1,183 @@
+{
+  "body": {
+   "type": "object",
+   "properties": {
+     "expand": {
+       "type": "string"
+     },
+     "self": {
+       "type": "string"
+     },
+     "id": {
+       "type": "string"
+     },
+     "key": {
+       "type": "string"
+     },
+     "description": {
+       "type": "string"
+     },
+     "lead": {
+       "type": "object",
+       "properties": {
+         "self": {
+           "type": "string"
+         },
+         "accountId": {
+           "type": "string"
+         },
+         "avatarUrls": {
+           "type": "object",
+           "properties": {
+             "48x48": {
+               "type": "string"
+             },
+             "24x24": {
+               "type": "string"
+             },
+             "16x16": {
+               "type": "string"
+             },
+             "32x32": {
+               "type": "string"
+             }
+           }
+         },
+         "displayName": {
+           "type": "string"
+         },
+         "active": {
+           "type": "boolean"
+         }
+       }
+     },
+     "components": {
+       "type": "array",
+       "items": {}
+     },
+     "issueTypes": {
+       "type": "array",
+       "items": {
+         "type": "object",
+         "properties": {
+           "self": {
+             "type": "string"
+           },
+           "id": {
+             "type": "string"
+           },
+           "description": {
+             "type": "string"
+           },
+           "iconUrl": {
+             "type": "string"
+           },
+           "name": {
+             "type": "string"
+           },
+           "subtask": {
+             "type": "boolean"
+           },
+           "avatarId": {
+             "type": "number"
+           },
+           "hierarchyLevel": {
+             "type": "number"
+           }
+         },
+         "required": [
+           "self",
+           "id",
+           "description",
+           "iconUrl",
+           "name",
+           "subtask",
+           "avatarId",
+           "hierarchyLevel"
+         ]
+       }
+     },
+     "assigneeType": {
+       "type": "string"
+     },
+     "versions": {
+       "type": "array",
+       "items": {}
+     },
+     "name": {
+       "type": "string"
+     },
+     "roles": {
+       "type": "object",
+       "properties": {
+         "atlassian-addons-project-access": {
+           "type": "string"
+         },
+         "Administrators": {
+           "type": "string"
+         }
+       }
+     },
+     "avatarUrls": {
+       "type": "object",
+       "properties": {
+         "48x48": {
+           "type": "string"
+         },
+         "24x24": {
+           "type": "string"
+         },
+         "16x16": {
+           "type": "string"
+         },
+         "32x32": {
+           "type": "string"
+         }
+       }
+     },
+     "projectTypeKey": {
+       "type": "string"
+     },
+     "simplified": {
+       "type": "boolean"
+     },
+     "style": {
+       "type": "string"
+     },
+     "isPrivate": {
+       "type": "boolean"
+     },
+     "properties": {
+       "type": "object",
+       "properties": {}
+     }
+   }
+ },
+  "status_code": 200,
+  "headers": {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Date": "Mon, 30 Jun 2025 03:09:06 GMT",
+    "Server": "",
+    "Timing-Allow-Origin": "",
+    "X-Arequestid": "",
+    "Set-Cookie": "",
+    "X-Aaccountid": "",
+    "Cache-Control": "",
+    "Vary": "",
+    "Content-Encoding": "",
+    "X-Content-Type-Options": "",
+    "X-Xss-Protection": "",
+    "Atl-Traceid": "",
+    "Atl-Request-Id": "",
+    "Strict-Transport-Security": "",
+    "Report-To": "",
+    "Nel": "",
+    "X-Cache": "",
+    "Via": "",
+    "X-Amz-Cf-Pop": "",
+    "X-Amz-Cf-Id": "",
+    "Server-Timing": ""
+  }
+}
